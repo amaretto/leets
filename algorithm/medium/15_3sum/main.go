@@ -55,48 +55,33 @@ func threeSum(nums []int) [][]int {
 	return result
 }
 
-func threeSum2(nums []int) [][]int {
+func threeSumImprove(nums []int) [][]int {
 	var result [][]int
-	found := make(map[string]bool, len(nums))
-	dup := make(map[int]bool, len(nums))
-	seen := make(map[int]int, len(nums))
-	var key string
+	var l, r, sum int
+
+	sort.Sort(sort.IntSlice(nums))
+
 	for i := 0; i < len(nums); i++ {
-		x := nums[i]
-		if !dup[x] {
-			dup[x] = true
-			for j := 0; j < len(nums); j++ {
-				y := nums[j]
-				need := -x - y
-				if val, ok := seen[need]; ok {
-					if val != i {
-						continue
-					}
-					max := max(max(x, y), need)
-					min := min(min(x, y), need)
-					key = fmt.Sprintf("%d,%d", max, min)
-					if !found[key] {
-						found[key] = true
-						result = append(result, []int{x, y, need})
-					}
+		if i > 0 && nums[i] == nums[i-1] {
+			continue
+		}
+		l = i + 1
+		r = len(nums) - 1
+		for l < r {
+			fmt.Println(nums[i], nums[l], nums[r])
+			sum = nums[i] + nums[l] + nums[r]
+			if sum < 0 {
+				l++
+			} else if sum > 0 {
+				r--
+			} else {
+				result = append(result, []int{nums[i], nums[l], nums[r]})
+				l++
+				for nums[l] == nums[l-1] && l < r {
+					l++
 				}
-				seen[y] = i
 			}
 		}
 	}
 	return result
-}
-
-func max(x, y int) int {
-	if x > y {
-		return x
-	}
-	return y
-}
-
-func min(x, y int) int {
-	if x > y {
-		return y
-	}
-	return x
 }
