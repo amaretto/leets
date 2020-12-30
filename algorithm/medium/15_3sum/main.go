@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"sort"
 )
 
@@ -52,4 +53,50 @@ func threeSum(nums []int) [][]int {
 	}
 
 	return result
+}
+
+func threeSum2(nums []int) [][]int {
+	var result [][]int
+	found := make(map[string]bool, len(nums))
+	dup := make(map[int]bool, len(nums))
+	seen := make(map[int]int, len(nums))
+	var key string
+	for i := 0; i < len(nums); i++ {
+		x := nums[i]
+		if !dup[x] {
+			dup[x] = true
+			for j := 0; j < len(nums); j++ {
+				y := nums[j]
+				need := -x - y
+				if val, ok := seen[need]; ok {
+					if val != i {
+						continue
+					}
+					max := max(max(x, y), need)
+					min := min(min(x, y), need)
+					key = fmt.Sprintf("%d,%d", max, min)
+					if !found[key] {
+						found[key] = true
+						result = append(result, []int{x, y, need})
+					}
+				}
+				seen[y] = i
+			}
+		}
+	}
+	return result
+}
+
+func max(x, y int) int {
+	if x > y {
+		return x
+	}
+	return y
+}
+
+func min(x, y int) int {
+	if x > y {
+		return y
+	}
+	return x
 }
