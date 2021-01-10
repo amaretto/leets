@@ -10,6 +10,6 @@ func swapPairs(head *ListNode) *ListNode {
 		return head
 	}
 	head, head.Next, head.Next.Next = head.Next, head.Next.Next, head
-	swapPairs(head.Next.Next)
+	head.Next.Next = swapPairs(head.Next.Next)
 	return head
 }
