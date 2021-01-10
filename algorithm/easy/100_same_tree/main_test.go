@@ -14,7 +14,7 @@ var testCases = []struct {
 	{[]int{1, 2, 1}, []int{1, 1, 2}, false},
 }
 
-func TestThreeSum(t *testing.T) {
+func TestIsSameTree(t *testing.T) {
 	for _, testCase := range testCases {
 		// preapre p
 		parray := make([]TreeNode, len(testCase.p))
