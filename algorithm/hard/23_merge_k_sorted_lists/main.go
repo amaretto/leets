@@ -8,22 +8,11 @@ type ListNode struct {
 }
 
 func main() {
-	a := ListNode{1, nil}
-	b := ListNode{4, nil}
-	a.Next = &b
-	c := ListNode{5, nil}
-	b.Next = &c
+	a := &ListNode{1, &ListNode{4, &ListNode{5, nil}}}
+	b := &ListNode{1, &ListNode{3, &ListNode{4, nil}}}
+	c := &ListNode{2, &ListNode{6, nil}}
 
-	d := ListNode{1, nil}
-	e := ListNode{3, nil}
-	d.Next = &e
-	f := ListNode{4, nil}
-	e.Next = &f
-
-	g := ListNode{2, nil}
-	h := ListNode{6, nil}
-	g.Next = &h
-	printll(mergeKLists([]*ListNode{&a, &d, &g}))
+	printll(mergeKLists([]*ListNode{a, b, c}))
 
 }
 
