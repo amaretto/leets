@@ -1,20 +1,9 @@
 package main
 
-import "fmt"
-
 type TreeNode struct {
 	Val   int
 	Left  *TreeNode
 	Right *TreeNode
-}
-
-func main() {
-	testCase := &TreeNode{3, &TreeNode{9, nil, nil}, &TreeNode{20, &TreeNode{15, nil, nil}, &TreeNode{7, nil, nil}}}
-	fmt.Println(minDepth(testCase))
-	testCase2 := &TreeNode{2, nil, &TreeNode{3, nil, &TreeNode{4, nil, &TreeNode{5, nil, &TreeNode{6, nil, nil}}}}}
-	fmt.Println(minDepth(testCase2))
-	testCase3 := &TreeNode{}
-	fmt.Println(minDepth(testCase3))
 }
 
 func minDepth(root *TreeNode) int {
