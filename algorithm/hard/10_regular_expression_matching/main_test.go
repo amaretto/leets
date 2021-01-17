@@ -7,14 +7,17 @@ var testCases = []struct {
 	Expression string
 	Output     bool
 }{
-	{"aa", "a", false},
-	{"a", "a*", true},
-	{"ab", ".*", true},
-	{"abc", ".*c", true},
-	{"aab", "c*a*b", true},
-	{"mississippi", "mis*is*p*", false},
-	{"aa", "a*", true},
-	{"ab", ".*c", false},
+	//	{"aa", "a", false},
+	//	{"a", "a*", true},
+	//	{"ab", ".*", true},
+	//	{"abc", ".*c", true},
+	//	{"aab", "c*a*b", true},
+	//	{"aaa", "a*a", true},
+	{"aaa", "ab*a*c*a", true},
+	//	{"mississippi", "mis*is*p*", false},
+	//	{"mississippi", "mis*is*ip*i", true},
+	//	{"aa", "a*", true},
+	//	{"ab", ".*c", false},
 }
 
 func TestIsMatch(t *testing.T) {

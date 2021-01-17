@@ -2,15 +2,13 @@ package main
 
 import "fmt"
 
-func main() {
-	fmt.Println(isMatch("ab", ".*c"))
-}
-
 func isMatch(s string, p string) bool {
 	var pos int
 	var e, tmp, next byte
 
 	for i := 0; i < len(p); i++ {
+		fmt.Printf("%c\n", p[i])
+		fmt.Println("pos:", pos)
 		e = p[i]
 		if e == '*' { // repeat
 			if tmp == '.' {
@@ -18,22 +16,32 @@ func isMatch(s string, p string) bool {
 					return true
 				}
 				next = p[i+1]
+				// search next expression
 				for pos < len(s) && s[pos] != next {
 					pos++
 				}
 			} else {
 				for pos < len(s) && s[pos] == tmp {
 					pos++
+					if i < len(s)-1 {
+						if next = p[i+1]; s[pos] == next {
+							break
+						}
+					}
 				}
 			}
-		} else { // . or number
+		} else { // . or letter
 			if e != '.' && e != s[pos] {
+				// this if section judge like c*a*b (-> aab) pettern
 				if i < len(p)-1 {
 					if next = p[i+1]; next != '*' {
 						return false
 					}
 				}
 			} else {
+				if e != '.' && e != s[pos] {
+					return false
+				}
 				pos++
 			}
 		}
@@ -43,6 +51,7 @@ func isMatch(s string, p string) bool {
 			if next == '*' {
 				continue
 			}
+			fmt.Println("hoge")
 			return false
 		}
 	}
