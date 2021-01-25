@@ -10,9 +10,11 @@ var testCases = []struct {
 	words []string
 	want  []int
 }{
-	{"barfoothefoobarman", []string{"foo", "bar"}, []int{0, 9}},
-	{"wordgoodgoodgoodbestword", []string{"word", "good", "best", "word"}, []int(nil)},
-	{"barfoofoobarthefoobarman", []string{"bar", "foo", "the"}, []int{6, 9, 12}},
+	//{"barfoothefoobarman", []string{"foo", "bar"}, []int{0, 9}},
+	//{"wordgoodgoodgoodbestword", []string{"word", "good", "best", "word"}, []int(nil)},
+	//{"barfoofoobarthefoobarman", []string{"bar", "foo", "the"}, []int{6, 9, 12}},
+	//{"wordgoodgoodgoodbestword", []string{"word", "good", "best", "good"}, []int{8}},
+	{"lingmindraboofooowingdingbarrwingmonkeypoundcake", []string{"fooo", "barr", "wing", "ding", "wing"}, []int{13}},
 }
 
 func TestFindSubString(t *testing.T) {
