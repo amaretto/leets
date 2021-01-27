@@ -30,3 +30,33 @@ func longestValidParentheses(s string) int {
 
 	return result
 }
+
+// This code is reffered to discuttion on LeetCode
+func longestValidParenthesesImprove(s string) int {
+	var result, left int
+	d := make([]int, len(s))
+	if s == "" {
+		return 0
+	}
+
+	for i, c := range s {
+		if c == '(' {
+			left++
+		} else if left > 0 {
+			d[i] = d[i-1] + 2
+			if i-d[i] > 0 {
+				d[i] += d[i-d[i]]
+			}
+			result = max(result, d[i])
+			left--
+		}
+	}
+	return result
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}

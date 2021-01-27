@@ -23,3 +23,12 @@ func TestLongestValidParentheses(t *testing.T) {
 		}
 	}
 }
+
+func TestLongestValidParenthesesImprove(t *testing.T) {
+	for _, testCase := range testCases {
+		result := longestValidParenthesesImprove(testCase.s)
+		if result != testCase.want {
+			t.Errorf("invalid result. testCaes:%v, actual:%v", testCase, result)
+		}
+	}
+}
