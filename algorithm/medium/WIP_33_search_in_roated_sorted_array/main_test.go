@@ -22,3 +22,12 @@ func TestSearch(t *testing.T) {
 		}
 	}
 }
+
+func TestSearchImprove(t *testing.T) {
+	for _, testCase := range testCases {
+		result := searchImprove(testCase.nums, testCase.target)
+		if result != testCase.want {
+			t.Errorf("invalid result. testCase:%v, actual:%v", testCase, result)
+		}
+	}
+}
