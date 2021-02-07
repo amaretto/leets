@@ -10,7 +10,7 @@ func reverseKGroup(head *ListNode, k int) *ListNode {
 	tmp := head
 	var ahead, ghead, ptail, pre, next *ListNode
 
-	if head.Next == nil {
+	if head.Next == nil || k == 1 {
 		return head
 	}
 
@@ -18,6 +18,12 @@ func reverseKGroup(head *ListNode, k int) *ListNode {
 		next = tmp.Next
 		if count%k == 0 { // head of group
 			ghead = tmp
+			if ptail != nil {
+				ptail.Next = tmp
+			}
+			if !hasGroup(tmp, k) {
+				return ahead
+			}
 		} else if count%k == k-1 { // tail of group
 			ghead.Next = tmp.Next
 			if ptail != nil {
@@ -37,4 +43,15 @@ func reverseKGroup(head *ListNode, k int) *ListNode {
 	}
 
 	return ahead
+}
+
+func hasGroup(head *ListNode, k int) bool {
+	tmp := head
+	for i := 0; i < k; i++ {
+		if tmp == nil {
+			return false
+		}
+		tmp = tmp.Next
+	}
+	return true
 }
