@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"reflect"
 	"testing"
 )
@@ -17,23 +16,29 @@ var testCases = []struct {
 	{[]int{1}, 1, [][]int{[]int{1}}},
 }
 
-func TestFunction(t *testing.T) {
+func TestCombinationSum(t *testing.T) {
 	for _, testCase := range testCases {
 		result := combinationSum(testCase.candidates, testCase.target)
-		fmt.Println(result)
-		if !isSame(result, testCase.want) {
+		if !isSame(testCase.want, result) {
 			t.Errorf("invalid result. testCase:%v, actual:%v", testCase, result)
 		}
 	}
 }
 
 func isSame(a, b [][]int) bool {
+	var isContain bool
 	for _, i := range a {
+		isContain = false
 		for _, j := range b {
-			reflect.DeepEqual(i, j)
-			continue
+			if reflect.DeepEqual(i, j) {
+				isContain = true
+				break
+			}
 		}
-		return false
+		if !isContain {
+			return false
+		}
 	}
+
 	return true
 }
